@@ -1,5 +1,5 @@
 # AutoInsta
-A side project, to simply help myself learn more about browser automation. The documentation is absolutely premature, just like the whole project itself. I will modify it once I myself am happy with my progress at this.
+A side project, to simply help myself learn more about browser automation. The documentation is absolutely premature, just like the project itself. I will modify it once I myself am happy with my progress at this.
 
 ## Actions
 <ul>
