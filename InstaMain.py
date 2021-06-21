@@ -15,7 +15,7 @@ sugFollowCount = 9
 
 # running the task.
 loggingIn = InstaDef.loginPage(browser)
-feed = loggingIn.login("ritamksth", "sh0rtp@5s")
+feed = loggingIn.login("username", "password")
 feed.sayNo()
 handle = feed.user("ritamwho")
 handle.follow()
