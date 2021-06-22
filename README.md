@@ -28,9 +28,19 @@ The action class contains functions that interact with the interface of the webs
 	<li><i>postCount()</i></li>
 	This function returns the number of posts that an account has. It waits 1 second before doing so.
 	<li><i>postSelect()</i></li>
-	This function selects the first post in any account in the pop-up mode. It waits 1 second before doing so. If it can't locate the element, it forfeits the action.
+	This function selects the first post in any account and opens it in pop-up mode. It waits 1 second before doing so. If it can't locate the element, it forfeits the action.
+	<li><i>expSelect()</i></li>
+	This function selects the first post in the explore page and opens it in pop-up mode. It waits 2 seconds before doing so.
+	<li><i>topSelect()</i></li>
+	This function selects the first post in the top posts section of any tag page and opens it in pop-up mode. It waits 2 seconds before doing so.
+	<li><i>recSelect()</i></li>
+	This function selects the first post in the recent posts section of any tag page and opens it in pop-up mode. It waits 2 seconds before doing so.
 	<li><i>follow()</i></li>
 	This function presses the follow button in a profile. It waits 1 second before doing so. If it can't interact with the element, it forfeits the action.
 	<li><i>private()</i></li>
-	This function returns 0 if an account is private and 1 if not. It waits 1 second before doing so. If it can't extract this information, it forfeits the action
+	This function returns 0 if an account is private and 1 if not. It waits 1 second before doing so. If it can't extract this information, it forfeits the action.
+	<li><i>sugFollow()</i></li>
+	This function follows an account in the suggestions page. It waits 1 second before doing so.
+	<li><i>postToProf()</i></li>
+	This function goes to the account of the owner of any post open in pop-up mode. It waits 1 second before doing so.
 </ul>
