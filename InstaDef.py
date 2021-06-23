@@ -25,19 +25,19 @@ class loginPage:
 class feed:
     # selects "No" when prompted if the browser should remember the login details.
     def sayNo():
-        sleep(1)
+        sleep(2)
         forgetLogin = browser.find_element_by_xpath("//button[contains(.,'Not Now')]")
         forgetLogin.click()
-        sleep(1)
+        sleep(2)
         noNotif = browser.find_element_by_xpath("//button[contains(.,'Not Now')]")
         noNotif.click()
 
     # selects "Yes" when prompted if the browser should remember the login details.
     def sayYes():
-        sleep(1)
+        sleep(2)
         rememberLogin = browser.find_element_by_xpath("//button[contains(.,'Save Info')]")
-        forgetLogin.click()
-        sleep(1)
+        rememberLogin.click()
+        sleep(2)
         noNotif = browser.find_element_by_xpath("//button[contains(.,'Not Now')]")
         noNotif.click()
 
@@ -100,24 +100,50 @@ class do:
         action.homDislike(num)
         action.scroll('top')
 
-    def suggestedFollow(num):
-        for i in range(1, num + 1):
+    def suggestedFollow(numprof):
+        for i in range(0, numprof0):
             feed.suggestion()
-            action.sugProf(i)
+            action.sugProf(i + 1)
             if (action.private() == 0):
                 action.follow()
                 sleep(60)
                 browser.refresh()
-                if (action.private() == 0):
-                    action.follow()
+                sleep(1)
+                if (action.private() == 1):
+                    action.postSelect()
+                    action.postLike()
+                    action.close()
+                else:
+                    action.unfollow()
             else:
                 action.follow()
-                action.profSelect()
+                action.postSelect()
                 action.postLike()
             action.close()
         feed.home()
 
-    def profUnfollow(numprof):
+    def profFollow(handle):
+        feed.user(handle)
+        if (action.private() == 0):
+            action.follow()
+            sleep(3)
+            browser.refresh()
+            sleep(1)
+            if (action.private() == 1):
+                action.postSelect()
+                action.postLike()
+                action.close()
+            else:
+                action.unfollow()
+        else:
+            action.follow()
+            action.profSelect()
+            action.postLike()
+            action.close()
+        sleep(2)
+        feed.home()
+
+    def ownUnfollow(numprof):
         feed.profile()
         action.profFollowing()
         num = action.followingCount()
@@ -218,6 +244,20 @@ class action:
         try:
             follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
             follow.click()
+        except NoSuchElementException:
+            pass
+
+    def unfollow():
+        sleep(1)
+        try:
+            unf = browser.find_element_by_xpath("//button[contains(.,'Unfollow')]")
+            unf.click()
+        except NoSuchElementException:
+            req = browser.find_element_by_xpath("//button[contains(.,'Requested')]")
+            req.click()
+            sleep(1)
+            unf = browser.find_element_by_xpath("//button[contains(.,'Unfollow')]")
+            unf.click()
         except NoSuchElementException:
             pass
 
