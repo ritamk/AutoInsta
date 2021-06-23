@@ -11,7 +11,7 @@ A side project, to simply help myself learn more about browser automation. The d
         <li><i>startIG()</i></li>
 		This function is the one that starts the browser and goes to the instagram site.
         <li><i>login(username, password)</i></li>
-        This function takes two parameters: <code>username</code> and <code>password</code> of the user. This is used to login to the site. It also selects either <tt>No</tt> or <tt>Yes</tt> when prompted about either saving login details or showing notifications.
+        This function takes two parameters: <code>username</code> and <code>password</code> of the user. This is used to login to the site. It also selects either <tt>no</tt> or <tt>yes</tt> when prompted about either saving login details or showing notifications.
         <li><i>stopIG(wait)</i></li>
         This function quits the browser. It takes one parameter: <code>wait</code>. This determines the number of seconds the browser should wait before quitting.
         <li><i>likeHome(num)</i></li>
@@ -47,15 +47,15 @@ A side project, to simply help myself learn more about browser automation. The d
 	<ul>
 		<!-- <li><i></i></li> -->
 		<li><i>homLike(n)</i></li>
-		This function likes posts in the home/feed section of Instagram. It takes one parameter: n, this is the number of posts that the function will like before scrolling back up top. It waits for 4 seconds between each like, to make the activity seem more natural.
+		This function likes posts in the home/feed section of Instagram. It takes one parameter: <code>n</code>, this is the number of posts that the function will like before scrolling back up top. It waits for 4 seconds between each like, to make the activity seem more natural.
         <li><i>homDislike(n)</i></li>
-		This function dislikes posts in the home/feed section of Instagram. It takes one parameter: n, this is the number of posts that the function will dislike before scrolling back up top. It waits for 4 seconds between each dislike.
+		This function dislikes posts in the home/feed section of Instagram. It takes one parameter: <code>n</code>, this is the number of posts that the function will dislike before scrolling back up top. It waits for 4 seconds between each dislike.
         <li><i>postLike()</i></li>
 		This function likes pop-up posts. It waits 1 second before doing so to let the elements load properly.
 		<li><i>postDislike()</i></li>
 		This function dislikes pop-up posts. It waits 1 second before doing so.
         <li><i>comment(text)</i></li>
-		This function comments on pop-up posts. It takes a parameter: text, this is the text that is commented on a post. In a video, the function behaves abnormally. It waits at least 2 seconds before doing so. If it can't locate the commenting interface, it forfeits the action.
+		This function comments on pop-up posts. It takes a parameter: <code>text</code>, this is the text that is commented on a post. In a video, the function behaves abnormally. It waits at least 2 seconds before doing so. If it can't locate the commenting interface, it forfeits the action.
         <li><i>postSelect()</i></li>
 		This function selects the first post in any account and opens it in pop-up mode. It waits 1 second before doing so. If it can't locate the element, it forfeits the action.
         <li><i>expSelect()</i></li>
@@ -71,7 +71,7 @@ A side project, to simply help myself learn more about browser automation. The d
         <li><i>close()</i></li>
 		This function close the previous of a pop-up post. It waits 1 second before doing so. If it can't locate the closing button, it forfeits the action.
         <li><i>scroll(dir)</i></li>
-		This function scrolls instagram. It takes one parameter: dir, if the user wants to go to the top, then they must mention 'top' as the value of the dir parameter. Otherwise the function simply scrolls 400 pixels downwards. It waits 1 second before doing so.
+		This function scrolls instagram. It takes one parameter: <code>dir<code>, if the user wants to go to the top, then they must mention <tt>top</tt> as the value of the dir parameter. Otherwise the function simply scrolls 400 pixels downwards. It waits 1 second before doing so.
         <li><i>postCount()</i></li>
 		This function returns the number of posts that an account has. It waits 1 second before doing so.
         <li><i>follow()</i></li>
@@ -79,7 +79,7 @@ A side project, to simply help myself learn more about browser automation. The d
         <li><i>unfollow()</i></li>
 		This function presses the unfollow button in a pop-up prompt for the same. It can also cancel follow requests by withdrawing the request. It waits 1 second before diong so. If it can't interact with the element, it forfeits the action.
         <li><i>sugFollow(n)</i></li>
-		This function follows accounts in the suggestions page. It takes one parameter n: where the input 'fol' makes the function follow accounts in the suggestions page itself. Otherwise it goes into each account seperately and here n acts as the index of the account in the suggestions page. It waits 1 second before doing so.
+		This function follows accounts in the suggestions page. It takes one parameter <code>n</code>: where the input <tt>fol</tt> makes the function follow accounts in the suggestions page itself. Otherwise it goes into each account seperately and here <code>n</code> acts as the index of the account in the suggestions page. It waits 1 second before doing so.
         <li><i>private()</i></li>
 		This function returns 0 if an account is private or if a follow request has already been made and 1 if not. It waits 1 second before doing so. If it can't extract this information, it forfeits the action.
         <li><i>followingCount()</i></li>
@@ -93,6 +93,6 @@ A side project, to simply help myself learn more about browser automation. The d
         <li><i>postToProf()</i></li>
 		This function goes to the account of the owner of any post open in pop-up mode. It waits 1 second before doing so.
         <li><i>topAccounts(num)</i></li>
-		This function goes to instagram's top accounts section and selects the top profiles sequentially. It takes one parameter: num, this reflects the index of the profiles in the list that are to be interacted with. It waits for 1 second before doing so.
+		This function goes to instagram's top accounts section and selects the top profiles sequentially. It takes one parameter: <code>num</code>, this reflects the index of the profiles in the list that are to be interacted with. It waits for 1 second before doing so.
 	</ul>
 </details>
