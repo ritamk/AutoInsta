@@ -3,18 +3,17 @@ A side project, to simply help myself learn more about browser automation. The d
 
 <details>
 	<summary>Do</summary>
-	
-	
-	###### The do class contains the functions that interact with the user and utilise the other classes to get the desired results. Below is a list of all the functions in this class and a brief description of what each one of them does.
+    The do class contains the functions that interact with the user and utilise the other classes to get the desired results. Below is a list of all the functions in this class and a brief description of what each one of them does.
 	<ul>
 		<!-- <li><i></i></li> -->
+        <li><i>startIG()</i></li>
+		This function is the one that starts the browser and goes to the instagram site.
 	</ul>
 </details>
 
 <details>
 	<summary>Actions</summary>
-
-	###### The action class contains functions that interact with the interface of the website. Below is a list of all the functions in this class and a brief description of what each of them does.
+    The action class contains functions that interact with the interface of the website. Below is a list of all the functions in this class and a brief description of what each of them does.
 	<ul>
 		<!-- <li><i></i></li> -->
 		<li><i>homLike(n)</i></li>
