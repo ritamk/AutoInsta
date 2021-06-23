@@ -52,5 +52,5 @@ The action class contains functions that interact with the interface of the webs
 	<li><i>postToProf()</i></li>
 	This function goes to the account of the owner of any post open in pop-up mode. It waits 1 second before doing so.
 	<li><i>topAccounts(num)</i></li>
-	This function goes to instagram's top accounts section and selects the top profiles sequentially. It waits for 1 second before doing so.
+	This function goes to instagram's top accounts section and selects the top profiles sequentially. It takes one parameter: num, this reflects the index of the profiles in the list that are to be interacted with. It waits for 1 second before doing so.
 </ul>
