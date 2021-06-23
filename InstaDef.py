@@ -93,7 +93,7 @@ class do:
         browser.quit()
 
     def likeHome(num):
-        action.homLike()
+        action.homLike(num)
         action.scroll('top')
 
     def dislikeHome(num):
@@ -101,13 +101,29 @@ class do:
         action.scroll('top')
 
     def suggestedFollow(num):
-        feed.suggestion()
-        for i in range(0, num):
-            action.sugFollow()
-        action.feed()
+        for i in range(1, num + 1):
+            feed.suggestion()
+            action.sugProf(i)
+            if (action.private() == 0):
+                action.follow()
+                sleep(60)
+                browser.refresh()
+                if (action.private() == 0):
+                    action.follow()
+            else:
+                action.follow()
+                action.profSelect()
+                action.postLike()
+            action.close()
+        feed.home()
 
     def profUnfollow(numprof):
-
+        feed.profile()
+        action.profFollowing()
+        num = action.followingCount()
+        for i in range(0, num):
+            action.profUnfollow()
+        feed.home()
 
     def exploreComment(num, text):
         feed.explore()
@@ -132,6 +148,7 @@ class do:
                 action.comment(random.choice(text))
                 action.next()
             action.close()
+        feed.home()
 
     def tagTopComment(hash, num, text):
         feed.tag(hash)
@@ -166,6 +183,7 @@ class do:
                 action.next()
             action.comment(random.choice(text))
             action.close()
+        feed.home()
 
     def topProfile(num, numprof, text):
         for i in range(1, numprof + 1):
@@ -177,16 +195,22 @@ class do:
                 action.comment(random.choose(text))
                 action.next()
             action.close()
+        feed.home()
 
 # class for basic instagram interactions.
 class action:
-    # clicks the follow button in suggestion page.
-    def sugFollow():
-        sleep(1)
-        follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
+    # clicks the follow button in suggestion page if parameter is 'fol' ,otherwise it goes into their profiles.
+    def sugProf(n):
         # coordinates = follow.location_once_scrolled_into_view
         # self.browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
-        follow.click()
+        if (n == 'fol'):
+            sleep(1)
+            follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
+            follow.click()
+        else:
+            sleep(1)
+            profile = browser.find_element_by_xpath("div[n]/div[2]/div/div/span/a")
+            profile.click()
 
     # clicks the follow button in any user's page.
     def follow():
@@ -349,6 +373,18 @@ class action:
         sleep(1)
         posts = browser.find_element_by_xpath("//li/span/span")
         num = BS(posts.get_attribute('innerHTML'), 'html.parser').text
+        return num
+
+    def followingCount():
+        sleep(1)
+        following = browser.find_element_by_xpath("//li[3]/a/span")
+        num = BS(following.get_attribute('innerHTML'), 'html.parser').text
+        return num
+
+    def followerCount():
+        sleep(1)
+        following = browser.find_element_by_xpath("//li[2]/a/span")
+        num = BS(follower.get_attribute('innerHTML'), 'html.parser').text
         return num
 
     # scrolls to the top if specified, otherwise goes 400px downwards.
