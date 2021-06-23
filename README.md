@@ -40,6 +40,17 @@ A side project, to simply help myself learn more about browser automation. The d
 </details>
 
 <details>
+	<summary>Login Page</summary>
+	<br>
+	The <code>loginPage</code> class contains a sole function that defines the login activity. Below is a brief description of the function.
+	<br></br>
+	<ul>
+		<li><i>login(username, password)</i></li>
+		This function logs into the user's account. It takes two parameters: username and password. <code>username</code> is self-explanatory, containing the username of the user and so is the case with <code>password</password>, which contains the password of the user.
+	</ul>
+</details>
+
+<details>
 	<summary>Feed</summary>
 	<br>
 	The <code>feed</code> class contains functions that fetch webpages and interact with prompts about saving login info and notification permissions. Below is a list of all the functions in this class and a brief description of what each of them does.
