@@ -4,6 +4,8 @@ A side project, to simply help myself learn more about browser automation. The d
 <details>
 	<summary>Do</summary>
     The do class contains the functions that interact with the user and utilise the other classes to get the complete the desired tasks. Below is a list of all the functions in this class and a brief description of what each one of them does.
+	<br>
+	</br>
 	<ul>
 		<!-- <li><i></i></li> -->
         <li><i>startIG()</i></li>
@@ -17,13 +19,16 @@ A side project, to simply help myself learn more about browser automation. The d
         <li><i>dislikeHome(num)</i></li>
         This function dislikes the posts on the home page. It takes one parameter: num, which determines the number of posts that are to be disliked. After completing the task it scrolls back up to the top of the page.
         <li><i>suggestedFollow(numprof)</i></li>
-        This function follows profiles in the suggested page. 
+        This function follows profiles in the suggested page. It can do so by either going into each profile and liking one post, or by simply following from the suggestions page itself.
+		<li><i></i></li>
 	</ul>
 </details>
 
 <details>
 	<summary>Actions</summary>
     The action class contains functions that interact with the interface of the website. Below is a list of all the functions in this class and a brief description of what each of them does.
+	<br>
+	</br>
 	<ul>
 		<!-- <li><i></i></li> -->
 		<li><i>homLike(n)</i></li>
