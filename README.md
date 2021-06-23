@@ -4,12 +4,12 @@ A side project, to simply help myself learn more about browser automation. The d
 <details>
 	<summary>Do</summary>
 	
+	
+	###### The do class contains the functions that interact with the user and utilise the other classes to get the desired results. Below is a list of all the functions in this class and a brief description of what each one of them does.
 	<ul>
 		<!-- <li><i></i></li> -->
 	</ul>
 </details>
-
-###### The do class contains the functions that interact with the user and utilise the other classes to get the desired results. Below is a list of all the functions in this class and a brief description of what each one of them does.
 
 <details>
 	<summary>Actions</summary>
