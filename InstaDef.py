@@ -3,6 +3,7 @@ import random
 from bs4 import BeautifulSoup as BS
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 
 browser = webdriver.Firefox()
@@ -65,9 +66,9 @@ class feed:
         expPage.click()
 
     # goes to the explore page of specified tag.
-    def tag(tag):
+    def tag(hash):
         sleep(1)
-        browser.get('https://www.instagram.com/explore/tags/{}/'.format(tag))
+        browser.get('https://www.instagram.com/explore/tags/{}/'.format(hash))
 
     # goes to the suggested people to follow page.
     def suggestion():
@@ -81,32 +82,42 @@ class feed:
 
 # performs functions the user specifies
 class do:
+    # goes to instagram.
     def startIG():
         browser.get('https://www.instagram.com/')
 
+    # logs into instagram.
     def login(username, password):
         loginPage.login('{}'.format(username), '{}'.format(password))
         feed.sayNo()
+        # feed.sayYes()
 
+    # quits the browser after waiting a while.
     def stopIG(wait):
         sleep(wait)
         browser.quit()
 
+    # likes posts in home page.
     def likeHome(num):
         action.homLike(num)
         action.scroll('top')
 
+    # dislikes posts in home page.
     def dislikeHome(num):
         action.homDislike(num)
         action.scroll('top')
 
+    # follows suggested accounts.
     def suggestedFollow(numprof):
-        for i in range(0, numprof0):
+        for i in range(0, numprof):
             feed.suggestion()
-            action.sugProf(i + 1)
+            action.sugFollow(i + 1)
+            # if going into the profiles each time is not required,
+            # then just loop the line below and comment out the rest up till feed.home().
+            # action.sugFollow(fol)
             if (action.private() == 0):
                 action.follow()
-                sleep(60)
+                sleep(120)
                 browser.refresh()
                 sleep(1)
                 if (action.private() == 1):
@@ -122,11 +133,12 @@ class do:
             action.close()
         feed.home()
 
+    # follows specified profile.
     def profFollow(handle):
         feed.user(handle)
         if (action.private() == 0):
             action.follow()
-            sleep(3)
+            sleep(120)
             browser.refresh()
             sleep(1)
             if (action.private() == 1):
@@ -143,14 +155,20 @@ class do:
         sleep(2)
         feed.home()
 
+    # unfollows accounts from following page.
     def ownUnfollow(numprof):
         feed.profile()
-        action.profFollowing()
         num = action.followingCount()
-        for i in range(0, num):
-            action.profUnfollow()
+        action.profFollowing()
+        if (numprof == 'all'):
+            for i in range(0, num):
+                action.profUnfollow()
+        else:
+            for i in range(0, numprof):
+                action.profUnfollow()
         feed.home()
 
+    # comments on posts in the explore page.
     def exploreComment(num, text):
         feed.explore()
         action.expSelect()
@@ -160,6 +178,7 @@ class do:
         action.close()
         feed.home()
 
+    # goes to accounts from posts in explore page and interacts with posts there.
     def exploreToProfile(num, numprof, text):
         for i in range(0, numprof):
             feed.explore()
@@ -176,6 +195,7 @@ class do:
             action.close()
         feed.home()
 
+    # comments on posts in the top section of a tag page.
     def tagTopComment(hash, num, text):
         feed.tag(hash)
         action.topSelect()
@@ -185,6 +205,7 @@ class do:
         action.close()
         feed.home()
 
+    # comments on posts in the recent section of a tag page.
     def tagRecComment(hash, num, text):
         feed.tag(hash)
         action.recSelect()
@@ -195,9 +216,11 @@ class do:
         action.close()
         feed.home()
 
+    # goes to accounts from posts in a tag page and interacts with posts there.
     def tagToProfile(hash, num, numprof, text):
         for i in range(0, numprof):
             feed.tag(hash)
+            # action.recSelect()
             action.topSelect()
             sleep(1)
             for k in range(0, i):
@@ -211,6 +234,7 @@ class do:
             action.close()
         feed.home()
 
+    # goes to top profiles directory and interacts with accounts there.
     def topProfile(num, numprof, text):
         for i in range(1, numprof + 1):
             feed.topAcc()
@@ -225,68 +249,6 @@ class do:
 
 # class for basic instagram interactions.
 class action:
-    # clicks the follow button in suggestion page if parameter is 'fol' ,otherwise it goes into their profiles.
-    def sugProf(n):
-        # coordinates = follow.location_once_scrolled_into_view
-        # self.browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
-        if (n == 'fol'):
-            sleep(1)
-            follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
-            follow.click()
-        else:
-            sleep(1)
-            profile = browser.find_element_by_xpath("div[n]/div[2]/div/div/span/a")
-            profile.click()
-
-    # clicks the follow button in any user's page.
-    def follow():
-        sleep(1)
-        try:
-            follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
-            follow.click()
-        except NoSuchElementException:
-            pass
-
-    def unfollow():
-        sleep(1)
-        try:
-            unf = browser.find_element_by_xpath("//button[contains(.,'Unfollow')]")
-            unf.click()
-        except NoSuchElementException:
-            req = browser.find_element_by_xpath("//button[contains(.,'Requested')]")
-            req.click()
-            sleep(1)
-            unf = browser.find_element_by_xpath("//button[contains(.,'Unfollow')]")
-            unf.click()
-        except NoSuchElementException:
-            pass
-
-    # checks if there's a "Account is private" tag.
-    def private():
-        sleep(1)
-        try:
-            private = browser.find_element_by_xpath("//h2[contains(.,'Private')]")
-            return 0
-        except NoSuchElementException:
-            return 1
-
-    # clicks the following button in profile.
-    def profFollowing():
-        sleep(2)
-        following = browser.find_element_by_xpath("//a[text() = ' following']")
-        following.click()
-
-    # clicks the unfollow button in own following page.
-    def profUnfollow():
-        sleep(2)
-        unfollow = browser.find_element_by_xpath("//button[text() = 'Following']")
-        following.click()
-        sleep(1)
-        unfollow = browser.find_element_by_xpath("//button[text() = 'Unfollow']")
-        # coordinates = unfollow.location_once_scrolled_into_view
-        # browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
-        unfollow.click()
-
     # clicks the like icon in home page.
     def homLike(n):
         for count in range(1, n + 1):
@@ -323,7 +285,7 @@ class action:
 
     # comments on posts.
     def comment(text):
-        sleep(2)
+        sleep(1)
         try:
             sleep(1)
             comment = browser.find_element_by_xpath("//textarea")
@@ -331,7 +293,7 @@ class action:
             comment = browser.find_element_by_xpath("//textarea")
             comment.send_keys(text)
             comment.send_keys(Keys.ENTER)
-        except NoSuchElementException:
+        except StaleElementReferenceException:
             sleep(1)
             pause = browser.find_element_by_xpath("//div[@aria-label = 'Control']")
             pause.click()
@@ -342,7 +304,7 @@ class action:
             comment = browser.find_element_by_xpath("//textarea")
             comment.send_keys(text)
             comment.send_keys(Keys.ENTER)
-        except:
+        except NoSuchElementException:
             pass
 
     # clicks the first picture in the profile page.
@@ -372,21 +334,14 @@ class action:
         select = browser.find_element_by_xpath("//article/div[2]/div/div/div")
         select.click()
 
-    def postToProf():
-        sleep(1)
-        profimg = browser.find_element_by_xpath("//a/img")
-        profimg.click()
-
     # clicks the next button on a post in a profile.
     def next():
         sleep(2)
         # try:
         next = browser.find_element_by_xpath("//a[contains(.,'Next')]")
         next.click()
-        return 0
-        # except NoSuchElementException:
-        #     return 1
-        #     pass
+        except NoSuchElementException:
+        pass
 
     # clicks the previous button on a post in a profile.
     def prev():
@@ -396,7 +351,6 @@ class action:
             prev.click()
             return 0
         except NoSuchElementException:
-            return 1
             pass
 
     # clicks the close button on a post in a profile.
@@ -408,25 +362,6 @@ class action:
         except NoSuchElementException:
             pass
 
-    # returns number of posts of user.
-    def postCount():
-        sleep(1)
-        posts = browser.find_element_by_xpath("//li/span/span")
-        num = BS(posts.get_attribute('innerHTML'), 'html.parser').text
-        return num
-
-    def followingCount():
-        sleep(1)
-        following = browser.find_element_by_xpath("//li[3]/a/span")
-        num = BS(following.get_attribute('innerHTML'), 'html.parser').text
-        return num
-
-    def followerCount():
-        sleep(1)
-        following = browser.find_element_by_xpath("//li[2]/a/span")
-        num = BS(follower.get_attribute('innerHTML'), 'html.parser').text
-        return num
-
     # scrolls to the top if specified, otherwise goes 400px downwards.
     def scroll(dir):
         sleep(1)
@@ -435,7 +370,97 @@ class action:
         else:
             browser.execute_script('window.scrollTo(0, 400);')
 
-    # clicks the top profiles sequentially
+    # returns number of posts of user.
+    def postCount():
+        sleep(1)
+        posts = browser.find_element_by_xpath("//li/span/span")
+        num = BS(posts.get_attribute('innerHTML'), 'html.parser').text
+        return num
+
+    # clicks the follow button in any user's page.
+    def follow():
+        sleep(1)
+        try:
+            follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
+            follow.click()
+        except NoSuchElementException:
+            pass
+
+    # clicks the unfollow button in unfollow prompt.
+    def unfollow():
+        sleep(1)
+        try:
+            unf = browser.find_element_by_xpath("//button[contains(.,'Unfollow')]")
+            unf.click()
+        except NoSuchElementException:
+            req = browser.find_element_by_xpath("//button[contains(.,'Requested')]")
+            req.click()
+            sleep(1)
+            unf = browser.find_element_by_xpath("//button[contains(.,'Unfollow')]")
+            unf.click()
+        except NoSuchElementException:
+            pass
+
+    # clicks the follow button in suggestion page if parameter is 'fol' ,otherwise it goes into their profiles.
+    def sugFollow(n):
+        # coordinates = follow.location_once_scrolled_into_view
+        # self.browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
+        if (n == 'fol'):
+            sleep(1)
+            follow = browser.find_element_by_xpath("//button[contains(.,'Follow')]")
+            follow.click()
+        else:
+            sleep(1)
+            profile = browser.find_element_by_xpath("div[n]/div[2]/div/div/span/a")
+            profile.click()
+
+    # checks if there's a "Account is private" tag.
+    def private():
+        sleep(1)
+        try:
+            private = browser.find_element_by_xpath("//h2[contains(.,'Private')]")
+            return 0
+        except NoSuchElementException:
+            return 1
+
+    # returns number of accounts the user follows.
+    def followingCount():
+        sleep(1)
+        following = browser.find_element_by_xpath("//li[3]/a/span")
+        num = BS(following.get_attribute('innerHTML'), 'html.parser').text
+        return num
+
+    # returns number of accounts that follow the user.
+    def followerCount():
+        sleep(1)
+        following = browser.find_element_by_xpath("//li[2]/a/span")
+        num = BS(follower.get_attribute('innerHTML'), 'html.parser').text
+        return num
+
+    # clicks the following button in profile.
+    def profFollowing():
+        sleep(1)
+        following = browser.find_element_by_xpath("//a[text() = ' following']")
+        following.click()
+
+    # clicks the unfollow button in own following page.
+    def profUnfollow():
+        sleep(2)
+        unfollow = browser.find_element_by_xpath("//button[text() = 'Following']")
+        following.click()
+        sleep(1)
+        unfollow = browser.find_element_by_xpath("//button[text() = 'Unfollow']")
+        unfollow.click()
+        # coordinates = unfollow.location_once_scrolled_into_view
+        # browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
+
+    # clicks the username of the post uploader when post is selected.
+    def postToProf():
+        sleep(1)
+        profimg = browser.find_element_by_xpath("//a/img")
+        profimg.click()
+
+    # clicks the top profiles sequentially.
     def topAccounts(num):
         sleep(1)
         prof = browser.find_element_by_xpath("//li[num]/a")
