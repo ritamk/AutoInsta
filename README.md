@@ -4,38 +4,38 @@ A side project, to simply help myself learn more about browser automation. The d
 <details>
 	<br/>
 	<summary>Do</summary>
-    The do class contains the functions that interact with the user and utilise the other classes to get the complete the desired tasks. Below is a list of all the functions in this class and a brief description of what each one of them does.
+    The <code>do</code> class contains the functions that interact with the user and utilise the other classes to get the complete the desired tasks. Below is a list of all the functions in this class and a brief description of what each one of them does.
 	<br></br>	
 	<ul>
 		<!-- <li><i></i></li> -->
         <li><i>startIG()</i></li>
 		This function is the one that starts the browser and goes to the instagram site.
         <li><i>login(username, password)</i></li>
-        This function takes two parameters: username and password of the user. This is used to login to the site. It also selects 'No' when prompted about either saving login details or showing notifications.
+        This function takes two parameters: <code>username</code> and <code>password</code> of the user. This is used to login to the site. It also selects either <tt>No</tt> or <tt>Yes</tt> when prompted about either saving login details or showing notifications.
         <li><i>stopIG(wait)</i></li>
-        This function quits the browser. It takes one parameter: wait. This determines the number of seconds the browser should wait before quitting.
+        This function quits the browser. It takes one parameter: <code>wait</code>. This determines the number of seconds the browser should wait before quitting.
         <li><i>likeHome(num)</i></li>
-        This function likes the posts on the home page. It takes one parameter: num, which determines the number of posts that are to be liked. After completing the task it scrolls back up to the top of the page.
+        This function likes the posts on the home page. It takes one parameter: <code>num</code>, which determines the number of posts that are to be liked. After completing the task it scrolls back up to the top of the page.
         <li><i>dislikeHome(num)</i></li>
-        This function dislikes the posts on the home page. It takes one parameter: num, which determines the number of posts that are to be disliked. After completing the task it scrolls back up to the top of the page.
+        This function dislikes the posts on the home page. It takes one parameter: <code>num</code>, which determines the number of posts that are to be disliked. After completing the task it scrolls back up to the top of the page.
         <li><i>suggestedFollow(numprof)</i></li>
-        This function follows profiles in the suggested page. It can do so by either going into each profile and liking one post, or by simply following from the suggestions page itself. If it goes into a profile, it follows it. If the profile is private, it waits for 2 minutes to see if the request is accepted, if not, it retracts the follow request.
+        This function follows profiles in the suggested page. It can do so by either going into each profile and liking one post, or by simply following from the suggestions page itself. It takes one parameter: <code>numprof</code>, this determines the number of accounts to visit. If it goes into a profile, it follows it. If the profile is private, it waits for 2 minutes to see if the request is accepted, if not, it retracts the follow request.
 		<li><i>profFollow(handle)</i></li>
-		This function follows an account and likes one post from their profile. It takes one parameter: handle, which is the instagram username of an account. The account page is accessed and followed and a post is liked. If the profile is private, it waits for 2 minutes to see if the request is accepted, if not, it retracts the follow request.
+		This function follows an account and likes one post from their profile. It takes one parameter: <code>handle</code>, which is the instagram username of an account. The account page is accessed and followed and a post is liked. If the profile is private, it waits for 2 minutes to see if the request is accepted, if not, it retracts the follow request.
 		<li><i>ownUnfollow(numprof)</i></li>
-		This function unfollows accouts from the user's following pop-up menu. It takes one parameter: numprof, this determines how many profiles are to be unfollowed. If the parameter value is 'all' then it unfollows account.
+		This function unfollows accouts from the user's following pop-up menu. It takes one parameter: <code>numprof</code>, this determines how many profiles are to be unfollowed. If the parameter value is <tt>all</tt> then it unfollows account.
 		<li><i>exploreToProfile(num ,numprof, text)</i></li>
-		This function interacts with profiles/posts in the explore page. It takes three parameters: num, numprof and text. num determines how many posts in the account are to be liked. numprof determines how many posts/accounts in the explore page are to be interacted with. text contains a list of comments from which a random comment is chosen and commented in the posts of the accounts the function visits.
+		This function interacts with profiles/posts in the explore page. It takes three parameters: num, numprof and text. <code>num</code> determines how many posts in the account are to be liked. <code>numprof</code> determines how many posts/accounts in the explore page are to be interacted with. <code>text</code> contains a list of comments from which a random comment is chosen and commented in the posts of the accounts the function visits.
 		<li><i>exploreComment(num, text)</i></li>
-		This function likes and comments on posts in the explore page. It takes two parameters: num, text. num determines how many posts are to be interacted with. text is a list of comments from which any random comment is chosen each time.
+		This function likes and comments on posts in the explore page. It takes two parameters: num and text. <code>num</code> determines how many posts are to be interacted with. <code>text</code> is a list of comments from which any random comment is chosen each time.
 		<li><i>tagTopComment(hash, num, text)</i></li>
-		This function goes to a tag page and likes and comments on the top posts there. It takes three parameters: hash, num, text. hash is the hashtag, whose tag page needs to be reached. num is the number of posts that are to be interacted with. text is a list of comments that are chosen at random.
+		This function goes to a tag page and likes and comments on the top posts there. It takes three parameters: hash, num, text. <code>hash</code> is the hashtag, whose tag page needs to be reached. <code>num</code> is the number of posts that are to be interacted with. <code>text</code> is a list of comments that are chosen at random.
 		<li><i>tagRecComment(hash, num, text)</i></li>
-		This function goes to a tag page and likes and comments on the recent posts there. It takes three parameters: hash, num, text. hash is the hashtag, whose tag page needs to be reached. num is the number of posts that are to be interacted with. text is a list of comments that are chosen at random.
+		This function goes to a tag page and likes and comments on the recent posts there. It takes three parameters: hash, num, text. <code>hash</code> is the hashtag, whose tag page needs to be reached. <code>num</code> is the number of posts that are to be interacted with. <code>text</code> is a list of comments that are chosen at random.
 		<li><i>tagToProfile(hash, num, numprof, text)</i></li>
-		This function interacts with profiles/posts in the tag page. It takes four parameters: hash, num, numprof and text. hash is the hashtag, whose tagpage is to be reached. num determines how many posts in the account are to be liked. numprof determines how many posts/accounts in the tag page are to be interacted with. text contains a list of comments from which a random comment is chosen and commented in the posts of the accounts the function visits.
+		This function interacts with profiles/posts in the tag page. It takes four parameters: hash, num, numprof and text. <code>hash</code> is the hashtag, whose tagpage is to be reached. <code>num</code> determines how many posts in the account are to be liked. <code>numprof</code> determines how many posts/accounts in the tag page are to be interacted with. <code>text</code> contains a list of comments from which a random comment is chosen and commented in the posts of the accounts the function visits.
 		<li><i>topProfile(num, numprof, text)</i></li>
-		This function goes into the top profiles from the top accounts directory and comments on the posts there. It takes three parameters: num, numprof, text. num determines how many posts in the profile are to be interacted with. numprof determines how many accounts are to be visited. text is a list of text that contains comments which are randomly chosen and commented.
+		This function goes into the top profiles from the top accounts directory and comments on the posts there. It takes three parameters: num, numprof, text. <code>num</code> determines how many posts in the profile are to be interacted with. <code>numprof</code> determines how many accounts are to be visited. <code>text</code> is a list of text that contains comments which are randomly chosen and commented.
 	</ul>
 </details>
 
