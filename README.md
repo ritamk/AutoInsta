@@ -2,7 +2,7 @@
 A side project, to simply help myself learn more about browser automation. The documentation is absolutely premature, just like the project itself. I will modify it once I'm happy with my progress at this. Below are brief descriptions of functions divided by classes in the [InstaDef.py](InstaDef.py) file.
 
 <details>
-	<br></br>
+	<br/>
 	<summary>Do</summary>
     The do class contains the functions that interact with the user and utilise the other classes to get the complete the desired tasks. Below is a list of all the functions in this class and a brief description of what each one of them does.
 	<br></br>	
@@ -40,7 +40,7 @@ A side project, to simply help myself learn more about browser automation. The d
 </details>
 
 <details>
-	<br></br>
+	<br/>
 	<summary>Actions</summary>
     The action class contains functions that interact with the interface of the website. Below is a list of all the functions in this class and a brief description of what each of them does.
 	<br></br>
