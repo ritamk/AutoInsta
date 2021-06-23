@@ -71,7 +71,7 @@ A side project, to simply help myself learn more about browser automation. The d
         <li><i>close()</i></li>
 		This function close the previous of a pop-up post. It waits 1 second before doing so. If it can't locate the closing button, it forfeits the action.
         <li><i>scroll(dir)</i></li>
-		This function scrolls instagram. It takes one parameter: <code>dir<code>, if the user wants to go to the top, then they must mention <tt>top</tt> as the value of the dir parameter. Otherwise the function simply scrolls 400 pixels downwards. It waits 1 second before doing so.
+		This function scrolls instagram. It takes one parameter: <code>dir</code>, if the user wants to go to the top, then they must mention <tt>top</tt> as the value of the dir parameter. Otherwise the function simply scrolls 400 pixels downwards. It waits 1 second before doing so.
         <li><i>postCount()</i></li>
 		This function returns the number of posts that an account has. It waits 1 second before doing so.
         <li><i>follow()</i></li>
