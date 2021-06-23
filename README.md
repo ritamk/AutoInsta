@@ -2,8 +2,8 @@
 A side project, to simply help myself learn more about browser automation. The documentation is absolutely premature, just like the project itself. I will modify it once I'm happy with my progress at this. Below are brief descriptions of functions divided by classes in the [InstaDef.py](InstaDef.py) file.
 
 <details>
-	<br>
 	<summary>Do</summary>
+	<br>
     The <code>do</code> class contains the functions that interact with the user and utilise the other classes to get the complete the desired tasks. Below is a list of all the functions in this class and a brief description of what each one of them does.
 	<br></br>	
 	<ul>
@@ -38,20 +38,38 @@ A side project, to simply help myself learn more about browser automation. The d
 		This function goes into the top profiles from the top accounts directory and comments on the posts there. It takes three parameters: num, numprof, text. <code>num</code> determines how many posts in the profile are to be interacted with. <code>numprof</code> determines how many accounts are to be visited. <code>text</code> is a list of text that contains comments which are randomly chosen and commented.
 	</ul>
 </details>
+
 <details>
-	<br>
 	<summary>Feed</summary>
+	<br>
 	The <code>feed</code> class contains functions that fetch webpages and interact with prompts about saving login info and notification permissions. Below is a list of all the functions in this class and a brief description of what each of them does.
 	<br></br>
 	<ul>
 		<!-- <li><i></i></li> -->
 		<li><i>sayNo()</i></li>
-		
+		This function selects <tt>no</tt> when asked if the login details need to saved. It selects <tt>no</tt> again when asked if the notifications can be turned on. It waits for 2 seconds for each prompt.
+		<li><i>sayYes()</i></li>
+		This function selects <tt>yes</tt> when asked if the login details need to saved. But it selects <tt>no</tt> when asked if the notifications can be turned on. It waits for 2 seconds for each prompt.
+		<li><i>home()</i></li>
+		This function selects the home button in the interface and takes the user to the home page.
+		<li><i>profile()</i></li>
+		This function selects the profile picture the home page and takes the user to their profile page.
+		<li><i>user(name)</i></li>
+		This function takes the user to the account of a mentioned handle. It takes one parameter: <code>name</code>, which contains the username of the account to be reached.
+		<li><i>explore()</i></li>
+		This function selects the explore button in the interface and takes the user to the explore page.
+		<li><i>tag(hash)</i></li>
+		This function takes the user to the tag page of a mentioned tag. It takes one parameter: <code>hash</code>, which contains the hashtag of the desired tag page.
+		<li><i>suggestion()</i></li>
+		This function takes the user to their suggested accounts page.
+		<li><i>topAcc()</i></li>
+		This function takes the user to instagram's top accounts page, specifically the 0-0 directory.
 	</ul>
 </details>
+
 <details>
-	<br>
 	<summary>Actions</summary>
+	<br>
     The <code>action</code> class contains functions that interact with the interface of the website. Below is a list of all the functions in this class and a brief description of what each of them does.
 	<br></br>
 	<ul>
