@@ -1,7 +1,13 @@
 # AutoInsta
-A side project, to simply help myself learn more about browser automation. The documentation is absolutely premature, just like the project itself. I will modify it once I'm happy with my progress at this.
+A side project, to simply help myself learn more about browser automation. The documentation is absolutely premature, just like the project itself. I will modify it once I'm happy with my progress at this. Below are the functions divided by classes in the [InstaDef.py](InstaDef.py) file.
 
-<summary>Do</summary>
+<details>
+	<summary>Do</summary>
+	
+	<ul>
+		<!-- <li><i></i></li> -->
+	</ul>
+</details>
 
 ###### The do class contains the functions that interact with the user and utilise the other classes to get the desired results. Below is a list of all the functions in this class and a brief description of what each one of them does.
 
