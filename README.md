@@ -46,7 +46,7 @@ A side project, to simply help myself learn more about browser automation. The d
 	<br></br>
 	<ul>
 		<li><i>login(username, password)</i></li>
-		This function logs into the user's account. It takes two parameters: username and password. <code>username</code> is self-explanatory, containing the username of the user and so is the case with <code>password</password>, which contains the password of the user.
+		This function logs into the user's account. It takes two parameters: username and password. <code>username</code> is self-explanatory, containing the username of the user and so is the case with <code>password</code>, which contains the password of the user.
 	</ul>
 </details>
 
