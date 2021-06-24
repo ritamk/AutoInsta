@@ -253,19 +253,29 @@ class action:
     def homLike(n):
         for count in range(1, n + 1):
             sleep(4)
-            like = browser.find_element_by_xpath("//*[name() = 'svg'][@aria-label = 'Like'][@height = '24']")
-            like.click()
+            try:
+                like = browser.find_element_by_xpath("//*[name() = 'svg'][@aria-label = 'Like'][@height = '24']")
+                like.click()
+            except NoSuchElementException:
+                pass
+                print("Couldn't like post in homepage.")
 
     # clicks the dislike icon in home page.
     def homDislike(n):
         for count in range(1, n + 1):
             sleep(4)
-            dislike = browser.find_element_by_xpath("//*[name() = 'svg'][@aria-label = 'Unlike'][@height = '24']")
-            # coordinates = dislike.location_once_scrolled_into_view
-            # browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
-            dislike.click()
+            try:
+                dislike = browser.find_element_by_xpath("//*[name() = 'svg'][@aria-label = 'Unlike'][@height = '24']")
+                dislike.click()
+                # coordinates = dislike.location_once_scrolled_into_view
+                # browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
+            except NoSuchElementException:
+                pass
+                print("Couldn't dislike post in homepage.")
 
-    # clicks the like button in posts.
+
+
+# clicks the like button in posts.
     def postLike():
         sleep(1)
         try:
@@ -273,6 +283,7 @@ class action:
             like.click()
         except NoSuchElementException:
             pass
+            print("Couldn't like post.")
 
     # clicks the dislike button in posts.
     def postDislike():
@@ -282,6 +293,7 @@ class action:
             dislike.click()
         except NoSuchElementException:
             pass
+            print("Couldn't dislike post.")
 
     # comments on posts.
     def comment(text):
@@ -306,6 +318,7 @@ class action:
             comment.send_keys(Keys.ENTER)
         except NoSuchElementException:
             pass
+            print("Couldn't comment on post.")
 
     # clicks the first picture in the profile page.
     def postSelect():
@@ -315,33 +328,47 @@ class action:
             select.click()
         except NoSuchElementException:
             pass
+            print("Couldn't select post in profile page.")
 
     # clicks the first picture in the explore page.
     def expSelect():
         sleep(2)
-        select = browser.find_element_by_xpath("//main/div/div/div/div/div[2]")
-        select.click()
+        try:
+            select = browser.find_element_by_xpath("//main/div/div/div/div/div[2]")
+            select.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find post in explore page.")
 
     # clicks the first top post of a tag.
     def topSelect():
         sleep(2)
-        select = browser.find_element_by_xpath("//article/div/div/div/div/div")
-        select.click()
+        try:
+            select = browser.find_element_by_xpath("//article/div/div/div/div/div")
+            select.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find top post in tag page.")
 
     # clicks the first recent post of a tag.
     def recSelect():
         sleep(2)
-        select = browser.find_element_by_xpath("//article/div[2]/div/div/div")
-        select.click()
+        try:
+            select = browser.find_element_by_xpath("//article/div[2]/div/div/div")
+            select.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find recent post in tag page.")
 
     # clicks the next button on a post in a profile.
     def next():
         sleep(2)
-        # try:
+        try:
         next = browser.find_element_by_xpath("//a[contains(.,'Next')]")
         next.click()
         except NoSuchElementException:
-        pass
+            pass
+            print("Couldn't find next button.")
 
     # clicks the previous button on a post in a profile.
     def prev():
@@ -352,6 +379,7 @@ class action:
             return 0
         except NoSuchElementException:
             pass
+            print("Couldn't find previous button.")
 
     # clicks the close button on a post in a profile.
     def close():
@@ -361,6 +389,7 @@ class action:
             close.click()
         except NoSuchElementException:
             pass
+            print("Couldn't find close button.")
 
     # scrolls to the top if specified, otherwise goes 400px downwards.
     def scroll(dir):
@@ -385,6 +414,7 @@ class action:
             follow.click()
         except NoSuchElementException:
             pass
+            print("Couldn't find follow button.")
 
     # clicks the unfollow button in unfollow prompt.
     def unfollow():
@@ -400,6 +430,7 @@ class action:
             unf.click()
         except NoSuchElementException:
             pass
+            print("Couldn't find unfollow button.")
 
     # clicks the follow button in suggestion page if parameter is 'fol' ,otherwise it goes into their profiles.
     def sugFollow(n):
@@ -411,8 +442,12 @@ class action:
             follow.click()
         else:
             sleep(1)
-            profile = browser.find_element_by_xpath("div[n]/div[2]/div/div/span/a")
-            profile.click()
+            try:
+                profile = browser.find_element_by_xpath("div[n]/div[2]/div/div/span/a")
+                profile.click()
+            except NoSuchElementException:
+                pass
+                print("Couldn't find follow button in suggestions page.")
 
     # checks if there's a "Account is private" tag.
     def private():
@@ -440,28 +475,48 @@ class action:
     # clicks the following button in profile.
     def profFollowing():
         sleep(1)
-        following = browser.find_element_by_xpath("//a[text() = ' following']")
-        following.click()
+        try:
+            following = browser.find_element_by_xpath("//a[text() = ' following']")
+            following.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find the following button in profile.")
 
     # clicks the unfollow button in own following page.
     def profUnfollow():
         sleep(2)
-        unfollow = browser.find_element_by_xpath("//button[text() = 'Following']")
-        following.click()
+        try:
+            following = browser.find_element_by_xpath("//button[text() = 'Following']")
+            following.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find following button.")
         sleep(1)
-        unfollow = browser.find_element_by_xpath("//button[text() = 'Unfollow']")
-        unfollow.click()
+        try:
+            unfollow = browser.find_element_by_xpath("//button[text() = 'Unfollow']")
+            unfollow.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find unfollow button.")
         # coordinates = unfollow.location_once_scrolled_into_view
         # browser.execute_script('window.scrollTo({}, {});'.format(coordinates['x'], coordinates['y']))
 
     # clicks the username of the post uploader when post is selected.
     def postToProf():
         sleep(1)
-        profimg = browser.find_element_by_xpath("//a/img")
-        profimg.click()
+        try:
+            profimg = browser.find_element_by_xpath("//a/img")
+            profimg.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find username in post.")
 
     # clicks the top profiles sequentially.
     def topAccounts(num):
         sleep(1)
-        prof = browser.find_element_by_xpath("//li[num]/a")
-        prof.click()
+        try:
+            prof = browser.find_element_by_xpath("//li[num]/a")
+            prof.click()
+        except NoSuchElementException:
+            pass
+            print("Couldn't find account in top profiles.")
