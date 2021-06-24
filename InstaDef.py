@@ -7,6 +7,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 
 browser = webdriver.Firefox()
+likeCount = dislikeCount = followCount = unfollowCount = commentCount = profileCount = 0
 
 # class for login page actions.
 class loginPage:
@@ -94,17 +95,25 @@ class do:
 
     # quits the browser after waiting a while.
     def stopIG(wait):
+        print("Likes: ", likeCount, "\n",
+        "Dislikes: ", dislikeCount, "\n",
+        "Follows: ", followCount, "\n",
+        "Unfollows: ", unfollowCount, "\n",
+        "Comments: ", commentCount, "\n",
+        "Profiles: ", profileCount, "\n")
         sleep(wait)
         browser.quit()
 
     # likes posts in home page.
     def likeHome(num):
         action.homLike(num)
+        likeCount += 1
         action.scroll('top')
 
     # dislikes posts in home page.
     def dislikeHome(num):
         action.homDislike(num)
+        dislikeCount += 1
         action.scroll('top')
 
     # follows suggested accounts.
@@ -112,6 +121,7 @@ class do:
         for i in range(0, numprof):
             feed.suggestion()
             action.sugFollow(i + 1)
+            profileCount += 1
             # if going into the profiles each time is not required,
             # then just loop the line below and comment out the rest up till feed.home().
             # action.sugFollow(fol)
@@ -121,38 +131,46 @@ class do:
                 browser.refresh()
                 sleep(1)
                 if (action.private() == 1):
+                    followCount += 1
                     action.postSelect()
                     action.postLike()
+                    likeCount += 1
                     action.close()
                 else:
                     action.unfollow()
             else:
                 action.follow()
+                followCount += 1
                 action.postSelect()
                 action.postLike()
+                likeCount += 1
             action.close()
         feed.home()
 
     # follows specified profile.
     def profFollow(handle):
         feed.user(handle)
+        profileCount += 1 
         if (action.private() == 0):
             action.follow()
             sleep(120)
             browser.refresh()
             sleep(1)
             if (action.private() == 1):
+                followCount += 1
                 action.postSelect()
                 action.postLike()
+                likeCount += 1
                 action.close()
             else:
                 action.unfollow()
         else:
             action.follow()
+            followCount += 1
             action.profSelect()
             action.postLike()
+            likeCount += 1
             action.close()
-        sleep(2)
         feed.home()
 
     # unfollows accounts from following page.
@@ -163,9 +181,11 @@ class do:
         if (numprof == 'all'):
             for i in range(0, num):
                 action.profUnfollow()
+                unfollowCount += 1
         else:
             for i in range(0, numprof):
                 action.profUnfollow()
+                unfollowCount += 1
         feed.home()
 
     # comments on posts in the explore page.
@@ -174,6 +194,7 @@ class do:
         action.expSelect()
         for i in range(0, num):
             action.comment(random.choice(text))
+            commentCount += 1
             action.next()
         action.close()
         feed.home()
@@ -187,10 +208,13 @@ class do:
             for k in range(0, i):
                 action.next()
             action.postToProf()
+            profileCount += 1
             action.postSelect()
             for j in range(0, num):
                 action.postLike()
+                likeCount += 1
                 action.comment(random.choice(text))
+                commentCount += 1
                 action.next()
             action.close()
         feed.home()
@@ -201,6 +225,7 @@ class do:
         action.topSelect()
         for i in range(0, num):
             action.comment(random.choice(text))
+            commentCount += 1
             action.next()
         action.close()
         feed.home()
@@ -211,7 +236,9 @@ class do:
         action.recSelect()
         for i in range(0, num):
             action.postLike()
+            likeCount += 1
             action.comment(random.choice(text))
+            commentCount += 1
             action.next()
         action.close()
         feed.home()
@@ -226,11 +253,14 @@ class do:
             for k in range(0, i):
                 action.next()
             action.postToProf()
+            profileCount += 1
             action.postSelect()
             for j in range(0, num):
                 action.postLike()
+                likeCount += 1
                 action.next()
             action.comment(random.choice(text))
+            commentCount += 1
             action.close()
         feed.home()
 
@@ -239,10 +269,12 @@ class do:
         for i in range(1, numprof + 1):
             feed.topAcc()
             action.topAccounts(i)
+            profileCount += 1
             for j in range(0, num):
                 action.postSelect()
                 sleep(1)
                 action.comment(random.choose(text))
+                commentCount += 1
                 action.next()
             action.close()
         feed.home()
@@ -273,9 +305,7 @@ class action:
                 pass
                 print("Couldn't dislike post in homepage.")
 
-
-
-# clicks the like button in posts.
+    # clicks the like button in posts.
     def postLike():
         sleep(1)
         try:
