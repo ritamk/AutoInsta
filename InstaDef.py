@@ -2,9 +2,14 @@ from time import sleep
 import random
 from bs4 import BeautifulSoup as BS
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
+
+# to make firefox not run in headless mode, comment out the next two lines of code.
+options = Options()
+options.headless = True
 
 browser = webdriver.Firefox()
 likeCount = dislikeCount = followCount = unfollowCount = commentCount = profileCount = 0
@@ -150,7 +155,7 @@ class do:
     # follows specified profile.
     def profFollow(handle):
         feed.user(handle)
-        profileCount += 1 
+        profileCount += 1
         if (action.private() == 0):
             action.follow()
             sleep(120)
@@ -394,8 +399,8 @@ class action:
     def next():
         sleep(2)
         try:
-        next = browser.find_element_by_xpath("//a[contains(.,'Next')]")
-        next.click()
+            next = browser.find_element_by_xpath("//a[contains(.,'Next')]")
+            next.click()
         except NoSuchElementException:
             pass
             print("Couldn't find next button.")
